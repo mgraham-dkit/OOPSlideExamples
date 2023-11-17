@@ -15,4 +15,4 @@ class FullTimeStaff(Staff):
 
     def display(self):
         super().display()
-        print(f"FullTimeStaff[salary={self.salary}, benefits={self.benefits}]")
+        print(f"FullTimeStaff[salary={self.salary}, benefits={self.benefits}, email={self.generate_email()}]")
