@@ -1,5 +1,6 @@
 from random import randint
 
+
 keep_playing = True
 max_guesses = 5
 min_value = 1
@@ -22,7 +23,13 @@ while keep_playing:
     value = randint(min_value, max_value)
     winner = False
     while len(guesses) < max_guesses and not winner:
-        guess = int(input(f"Please guess a number between {min_value} and {max_value}: "))
+        try:
+            guess = int(input(f"Please guess a number between {min_value} and {max_value}: "))
+        except ValueError as e:
+            print(f"An error occurred: {e.__class__.__name__}")
+            print()
+            continue
+
         guesses.append(guess)
 
         if guess == value:
