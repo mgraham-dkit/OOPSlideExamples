@@ -1,0 +1,2 @@
+class GradeError(Exception):
+    pass

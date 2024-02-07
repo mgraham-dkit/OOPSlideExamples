@@ -1,0 +1,8 @@
+D1100%%Helga%%4%%Chemistry__34.5~~Algebra__AA
+D3232%%Salazaar%%2%%Physics__34
+D101%%Rowena%%10%%Biology__23
+D3412%%Godric%%-1%%English__65
+D1103%%Helga Huff%%3%%Chemistry__34.5~~Woodwork__102
+D322%%Salazaar%%2%%Physics__34~~French__77__67
+D1001%%Rowena%%1%%Biology
+D3412%%Godric%%-1%%English__65
