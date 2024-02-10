@@ -1,2 +1,0 @@
-class GradeError(Exception):
-    pass
