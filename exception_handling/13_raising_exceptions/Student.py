@@ -48,8 +48,7 @@ class Student:
         for grade in grades:
             # Check if the current grade is not a tuple
             if not isinstance(grade, tuple):
-                # If it's not, raise a TypeError to indicate the wrong type of thing was supplied
-                raise TypeError(f"Grades must be provided in as tuples. Grade provided as: {grade}")
+                raise TypeError(f"Grades must be provided as tuples. Grade provided as: {grade}")
             # If there are not enough pieces in the grade to be valid (need 2 - a module name and a grade value)
             if len(grade) != 2:
                 # Raise a ValueError to indicate it doesn't contain the correct number of pieces

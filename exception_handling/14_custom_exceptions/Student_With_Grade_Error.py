@@ -16,7 +16,7 @@ class Student:
         for grade in grades:
             if not isinstance(grade, tuple):
                 # Instead of raising standard exceptions, we raise a custom exception specific to our own logic
-                raise GradeError(f"Grades must be provided in as tuples. Grade provided as: {grade}")
+                raise GradeError(f"Grades must be provided as tuples. Grade provided as: {grade}")
             if len(grade) != 2:
                 raise GradeError(f"Grades must be provided in format: (Module name, grade achieved). Grade provided as: {grade}")
             if not isinstance(grade[1], int) and not isinstance(grade[1], float):
