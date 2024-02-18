@@ -1,3 +1,7 @@
+# Import the logging module
+import logging
+
+
 class Student:
     """
         Class to model a Student. Student grades are held in a list.
@@ -8,14 +12,11 @@ class Student:
     # Static (shared) variable because it's created outside methods and doesn't include a reference to self.
     top_grade = None
 
+    # Static logger variable to log all issues to do with Students
+    logger = logging.getLogger(__name__)
+
     # Create a constructor to build a Student
     def __init__(self, id_num, name, year, grades=[]):
-        # The below is an example of a docstring for a method. This one outlines:
-        #   what the method does
-        #   the parameters taken in (what they are and what they're for)
-        #   Note: self isn't included in the parameters as it's an implicit one; it won't be included in the call
-        #   Any exceptions raised by the method (their types and any potential causes)
-
         """
             Create an instance of Student. If the new Student has a grade higher than the current top_grade
                 for all Students, the top_grade is updated.
@@ -36,8 +37,10 @@ class Student:
 
         # Check if the year is valid
         if year <= 0 or year > 4:
-            # If it's not, then raise an exception to indicate the year is invalid
-            # Remember to include (pass) a message to indicate what's gone wrong
+            # Log the issue with the year using the logger
+            # As this cannot be recovered without intervention from the user
+            # We use the error level
+            Student.logger.error(f"Year {year} not an appropriate value.")
             raise ValueError("Inappropriate year value supplied - Maximum of 4 years possible")
         # If the year provided is allowable, save it
         self.year = year
@@ -48,18 +51,27 @@ class Student:
         for grade in grades:
             # Check if the current grade is not a tuple
             if not isinstance(grade, tuple):
+                # Log the issue with the grade using the logger
+                # As this cannot be recovered without intervention from the user, we use the error level
+                Student.logger.error(f"Grade {grade} not in tuple format")
                 raise TypeError(f"Grades must be provided as tuples. Grade provided as: {grade}")
             # If there are not enough pieces in the grade to be valid (need 2 - a module name and a grade value)
             if len(grade) != 2:
-                # Raise a ValueError to indicate it doesn't contain the correct number of pieces
+                # Log the issue with the grade using the logger
+                # As this cannot be recovered without intervention from the user, we use the error level
+                Student.logger.error(f"Grade {grade} does not contain the right number of components")
                 raise ValueError(f"Grades must be provided in format: (Module name, grade achieved). Grade provided as: {grade}")
             # If the grade value is not a number (either int OR float)
             if not isinstance(grade[1], int) and not isinstance(grade[1], float):
-                # Raise a TypeError to indicate the grade value needs to be numeric
+                # Log the issue with the grade using the logger
+                # As this cannot be recovered without intervention from the user, we use the error level
+                Student.logger.error(f"Grade value in {grade} not in numeric form")
                 raise TypeError(f"Grade value must be provided as a number (int or float). Grade provided: {type(grade[1])}")
             # If the grade value provided is too big or too small
             if grade[1] < 0 or grade[1] > 100:
-                # Raise a ValueError to indicate the grade needs to be between 1 and 100
+                # Log the issue with the grade using the logger
+                # As this cannot be recovered without intervention from the user, we use the error level
+                Student.logger.error(f"Grade value in {grade} not within legal range for a grade")
                 raise ValueError(f"Grade cannot be less than 0 or over 100. Grade provided: {grade[1]}")
 
             # If all the validation checks pass for this grade,
@@ -75,10 +87,14 @@ class Student:
         # If this is the first Student created, the top_grade hasn't been changed from the default yet
         # (and is still None)
         if Student.top_grade is None:
+            # As the highest grade is being changed for all Students, we can log an info message
+            Student.logger.info(f"Max grade changed. Was {Student.top_grade}, is now {student_max}")
             # Set this student's highest grade to be the highest grade for all students
             Student.top_grade = student_max
         # If this student's grade is higher than the current top grade
         elif student_max[1] > Student.top_grade[1]:
+            # As the highest grade is being changed for all Students, we can log an info message
+            Student.logger.info(f"Max grade changed. Was {Student.top_grade}, is now {student_max}")
             # Set this student's highest grade to be the highest grade for all students
             Student.top_grade = student_max
 
