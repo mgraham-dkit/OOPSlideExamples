@@ -9,8 +9,13 @@ logging.basicConfig(format='%(asctime)s %(name)s.%(funcName)s +%(lineno)s: %(lev
                     level=logging.INFO, handlers=[student_fileHandler])
 # logging.basicConfig(filename="student_log.txt")
 
-
 logger = logging.getLogger(__name__)
+# Add an extra handler to the configuration to send debug messages to the console
+# Note: This will ONLY kick in when the overall logging level is set to debug, otherwise they'll be ignored
+console_handler = logging.StreamHandler()
+console_handler.setLevel(logging.DEBUG)
+logger.addHandler(console_handler)
+
 valid_file = False
 while not valid_file:
     try:
