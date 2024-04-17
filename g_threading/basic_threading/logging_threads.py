@@ -23,7 +23,7 @@ t1 = threading.Thread(name="Thread 1", target=random_sleeper)
 t2 = threading.Thread(name="Thread 2", target=random_sleeper)
 t3 = threading.Thread(name="Thread 3", target=random_sleeper)
 
-# Start all of the threads (set them running)
+# Start all the threads (set them running)
 t1.start()
 t2.start()
 t3.start()
