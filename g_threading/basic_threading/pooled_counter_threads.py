@@ -1,3 +1,4 @@
+import time
 from concurrent.futures import ThreadPoolExecutor
 import random
 
@@ -6,7 +7,8 @@ def increasing_counter(thread_id: int, value: int) -> None:
     print(f"Thread {thread_id} - value = {value}")
     i = 0
     while i < value:
-        print(f"{thread_id}: {i}")
+        print(f"{thread_id}: {i}\n")
+        time.sleep(1)
         i += 1
 
 
