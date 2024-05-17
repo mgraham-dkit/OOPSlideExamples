@@ -16,7 +16,7 @@ quantity = int(input("How many counters would you like? "))
 for count in range(quantity):
     num = random.randint(0, 10)
     counter_thread = Thread(target=increasing_counter,
-                            args=(count, num), daemon=True)
+                            args=(count, num))
     counter_thread.start()
 
 print("Main program complete.")

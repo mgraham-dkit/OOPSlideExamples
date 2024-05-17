@@ -31,8 +31,7 @@ class Counter:
         time.sleep(0.1)
         local_value = self.value
         local_value += 1
-
-        time.sleep(0.01)
+        time.sleep(0.1)
         self.value = local_value
         Counter.logger.info(f"Ending increment action - Value: {self.value}")
 
@@ -40,6 +39,6 @@ class Counter:
 if __name__ == "__main__":
     counter = Counter(15)
 
-    with ThreadPoolExecutor(max_workers=5) as executor:
-        for i in range(2):
+    with ThreadPoolExecutor(max_workers=30) as executor:
+        for i in range(20):
             executor.submit(counter.increment, i)
